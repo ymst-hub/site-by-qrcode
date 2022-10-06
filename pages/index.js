@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { QrReader } from 'react-qr-reader';
+import '../styles/globals.css' // site.jsでは個別に設定するため
+import Head from 'next/head'
 
 export default function Home() {
   const router = useRouter();
