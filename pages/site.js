@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 
 export default function Site() {
     //禁止するコード
-    const BAN_CODES = ['<script', '<input','href','src']
+    const BAN_CODES = ['<script', '<input','href','src','a']
 
     const router = useRouter();
     let qr_html_code = find_ban_code(router.query.data, ...BAN_CODES)
@@ -23,9 +23,10 @@ export default function Site() {
 
 /**
  * 
- * @param {*} ban_codes 禁止文字列を配列にして渡します。
- * @param {*} str qrで読み取ったhtmlコードを格納します
- * @returns 禁止コードを含んでいた場合、error_htmlを、含んでいない場合、そのままHTMLを返します。
+ * @param {*} BAN_CODES 禁止文字列を配列にして渡します。
+ * @param {*} error_html エラーの際に返すHTMLを設定しています。 
+ * @param {*} str qrで読み取ったhtmlコードを格納します。
+ * @returns 禁止コードを含んでいたなどの場合、error_htmlを、異常がない場合、そのままHTMLを返します。
  */
 function find_ban_code(html_code, ...BAN_CODES) {
     let error_html = '<h1>Sorry can not display.</h1>'
