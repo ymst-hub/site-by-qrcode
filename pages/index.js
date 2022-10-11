@@ -7,11 +7,11 @@ export default function Home() {
   return (
     <div>
       <h1>QRCodeからサイトを描画します</h1>
-      <QrReader Delay={5000}
+      <QrReader Delay={1000}
         onResult={(result) => {
           if (!!result && router_use_flg) {
             router_use_flg = false
-            router.push({ pathname: "site", query: {data : result?.text } }, "site")
+            router.push({ pathname: "site", query: { data: result?.text } }, "site")
           }
         }}
         className="video"

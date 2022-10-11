@@ -9,10 +9,10 @@ import { useRouter } from "next/router";
 
 export default function Site() {
     //禁止するコード
-    const ban_codes = ['<script', '<input','href']
+    const BAN_CODES = ['<script', '<input','href','src']
 
     const router = useRouter();
-    let qr_html_code = find_ban_code(router.query.data, ...ban_codes)
+    let qr_html_code = find_ban_code(router.query.data, ...BAN_CODES)
 
     return (
         <div>
@@ -27,14 +27,14 @@ export default function Site() {
  * @param {*} str qrで読み取ったhtmlコードを格納します
  * @returns 禁止コードを含んでいた場合、error_htmlを、含んでいない場合、そのままHTMLを返します。
  */
-function find_ban_code(html_code, ...ban_codes) {
+function find_ban_code(html_code, ...BAN_CODES) {
     let error_html = '<h1>Sorry can not display.</h1>'
-    if (html_code === undefined || ban_codes === undefined){
+    if (html_code === undefined || BAN_CODES === undefined){
         return error_html
     }
 
-    for (let i = 0; i < ban_codes.length; i++) {
-        if (html_code.indexOf(ban_codes[i]) != -1) {
+    for (let i = 0; i < BAN_CODES.length; i++) {
+        if (html_code.indexOf(BAN_CODES[i]) != -1) {
             return error_html
         }
     }
